@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Introduction</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Hello, DOM!</h1>
+        <h1>yeabsira</h1>
+        <p>This is a simple example of DOM manipulation.</p>
+        <button onclick="changeText()">Click me!</button>
+    </div>
+
+    <script>
+        // Function to change text content
+        function changeText() {
+            // Accessing the <h1> element by its ID, the index indicat the first h1 in the container
+            var heading = document.getElementById('container').getElementsByTagName('h1')[0];
+             // Accessing the <h1> element by its ID, the index indicat the second h1 in the container
+            var heading1 = document.getElementById('container').getElementsByTagName('h1')[1];
+            // Changing the text content of the <h1> element
+            heading.innerText = 'Welcome to DOM Manipulation!';
+            heading1.innerText='laaa luuu';
+        }
+    </script>
+</body>
+</html>
