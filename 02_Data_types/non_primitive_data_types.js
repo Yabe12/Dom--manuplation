@@ -3,15 +3,15 @@ nums[0] = 10
 console.log(nums) // [10, 2, 3]
 
 let nums = [1, 2, 3]
-let numbers = [1, 2, 3]
+let numbers1 = [1, 2, 3]
 console.log(nums == numbers) // false
 
-let userOne = {
+let userOne1 = {
   name: 'Asabeneh',
   role: 'teaching',
   country: 'Finland'
 }
-let userTwo = {
+let userTwo2 = {
   name: 'Asabeneh',
   role: 'teaching',
   country: 'Finland'
