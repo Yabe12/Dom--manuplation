@@ -31,7 +31,7 @@ Here’s the rewritten version of the provided text with improved formatting, co
 [Day 2 >>](./02_Data_types/02_data_types.md)  
 
 ---
-## 📔 Day 1: Setting Up JavaScript  
+## 📔 : Setting Up JavaScript  
 
 ### Getting Started  
 Learn how to set up and use JavaScript in your web development projects.
