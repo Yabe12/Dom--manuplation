@@ -895,26 +895,110 @@ We can convert string to number using the following methods:
 - parseInt()
 - Number()
 - Plus sign(+)
+The methods `parseInt()`, `Number()`, and the **plus sign** (`+`) are used in JavaScript to convert strings or other values into numbers, but they differ in behavior and use cases. Here's a detailed comparison:
 
+---
+
+### 1. **`parseInt()`**
+- **Purpose**: Parses a string and converts it to an integer by reading characters until a non-numeric character is found.
+- **Returns**: An integer value or `NaN` if the string cannot be converted.
+- **Behavior**:
+  - Ignores leading/trailing spaces.
+  - Stops parsing at the first non-numeric character.
+  - Does not handle decimals properly; truncates the fractional part.
+  - Can accept a second argument, `radix`, which specifies the base (e.g., binary, octal, decimal).
+
+#### Example:
 ```js
-let num = '10'
-let numInt = parseInt(num)
-console.log(numInt) // 10
+console.log(parseInt("42"));       // 42
+console.log(parseInt("42px"));     // 42 (stops at "px")
+console.log(parseInt("3.14"));     // 3 (truncates decimal part)
+console.log(parseInt("abc42"));    // NaN (starts with non-numeric)
+console.log(parseInt("101", 2));   // 5 (binary to decimal)
 ```
 
-```js
-let num = '10'
-let numInt = Number(num)
+---
 
-console.log(numInt) // 10
+### 2. **`Number()`**
+- **Purpose**: Converts a value to a number, including integers and floating-point numbers.
+- **Returns**: A number or `NaN` if the value cannot be converted.
+- **Behavior**:
+  - Converts the entire string into a number.
+  - Handles decimals and exponential notation.
+  - Does not stop parsing at non-numeric characters; if the string contains invalid characters, it returns `NaN`.
+
+#### Example:
+```js
+console.log(Number("42"));         // 42
+console.log(Number("3.14"));       // 3.14
+console.log(Number("42px"));       // NaN (invalid characters)
+console.log(Number("   42  "));    // 42 (trims whitespace)
+console.log(Number(""));           // 0 (empty string)
+console.log(Number(null));         // 0
+console.log(Number(undefined));    // NaN
 ```
 
-```js
-let num = '10'
-let numInt = +num
+---
 
-console.log(numInt) // 10
+### 3. **Plus Sign (`+`)**
+- **Purpose**: Similar to `Number()`, it attempts to convert a value to a number.
+- **Returns**: A number or `NaN` if the value cannot be converted.
+- **Behavior**:
+  - Converts strings to numbers, including floating-point numbers.
+  - Handles `null`, `undefined`, and whitespace like `Number()`.
+  - Often used as a shorthand for number conversion.
+  - Works slightly faster than `Number()` because it's a unary operator.
+
+#### Example:
+```js
+console.log(+"42");                // 42
+console.log(+"3.14");              // 3.14
+console.log(+"42px");              // NaN
+console.log(+("   42  "));         // 42 (trims whitespace)
+console.log(+"");                  // 0
+console.log(+null);                // 0
+console.log(+undefined);           // NaN
 ```
+
+---
+
+### Key Differences at a Glance:
+
+| Feature                  | **`parseInt()`**         | **`Number()`**         | **`+` (Plus Sign)**       |
+|--------------------------|--------------------------|-------------------------|---------------------------|
+| **Primary Use**          | Converts to integer only | Converts to number      | Converts to number        |
+| **Handles Decimals**     | No (truncates decimals)  | Yes                     | Yes                       |
+| **Stops at Non-Numeric** | Yes                     | No                      | No                        |
+| **Empty String**         | `NaN`                   | `0`                     | `0`                       |
+| **Handles `null`**       | `NaN`                   | `0`                     | `0`                       |
+| **Handles `undefined`**  | `NaN`                   | `NaN`                   | `NaN`                     |
+| **Radix Argument**       | Yes (e.g., binary)       | No                      | No                        |
+| **Performance**          | Slower                  | Medium                  | Fast                      |
+
+---
+
+### Combined Example:
+
+```js
+console.log(parseInt("42.5"));      // 42 (integer only)
+console.log(Number("42.5"));        // 42.5
+console.log(+"42.5");               // 42.5
+
+console.log(parseInt("42px"));      // 42 (stops at "px")
+console.log(Number("42px"));        // NaN
+console.log(+"42px");               // NaN
+
+console.log(parseInt("   42  "));   // 42
+console.log(Number("   42  "));     // 42
+console.log(+("   42  "));          // 42
+```
+
+---
+
+### Use Cases:
+- Use **`parseInt()`** when you only need the **integer part** of a number or when working with specific numeric bases (e.g., binary, octal).
+- Use **`Number()`** or **`+`** when you need to convert values to full **floating-point numbers**.
+- Use the **`+`** operator as a shorthand for quick number conversion.
 
 #### String to Float
 
