@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert, Prompt, and Confirm Example</title>
+</head>
+<body>
+  <h1>Alert, Prompt, and Confirm Example</h1>
+  <button onclick="showDialogs()">Click Me</button>
+
+  <script>
+    function showDialogs() {
+      // Alert Example
+      alert("Welcome to the website!");
+
+      // Prompt Example
+      let name = prompt("What is your name?", "Guest");
+      if (name) {
+        // Confirm Example
+        let isSure = confirm(`Is your name really ${name}?`);
+        if (isSure) {
+          alert(`Hello, ${name}! Welcome to our site.`);
+        } else {
+          alert("Name not confirmed!");
+        }
+      } else {
+        alert("No name provided!");
+      }
+    }
+  </script>
+</body>
+</html>
