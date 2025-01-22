@@ -41,10 +41,28 @@ We agreed that boolean values are either true or false.
 ### Falsy values
 
 - 0
-- 0n
+- 0n( // "bigint") console.log(typeof 0n);  
+let bigNum = 123456789012345678901234567890n;
+console.log(bigNum + 10n);   
 - null
 - undefined
-- NaN
+- NaN(Stands for Not-a-Number.)
+What it is: Stands for Not-a-Number.
+Purpose: Indicates that a value is not a valid number.
+Behavior:
+NaN is of type "number" (since it results from invalid number operations).
+Any operation with NaN results in NaN.
+Use isNaN() to check for invalid numbers.
+```
+console.log(NaN);              // NaN
+console.log(typeof NaN);       // "number"
+
+console.log(0 / 0);            // NaN (invalid math)
+console.log(Number("abc"));    // NaN (invalid conversion)
+
+console.log(isNaN(NaN));       // true
+console.log(NaN === NaN);      // false (special behavior of NaN)
+```
 - the boolean false
 - '', "", ``, empty string
 

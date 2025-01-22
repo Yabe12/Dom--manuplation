@@ -2,7 +2,7 @@ Here’s the rewritten version of the provided text with improved formatting, co
 
 ---
 
-# 30 Days of JavaScript  
+# JavaScript  
 
 | **Day** | **Topics** |  
 |---------|------------|  
