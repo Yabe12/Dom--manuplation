@@ -31,74 +31,123 @@ let falseValue = 4 < 3  // false
 ```
 
 We agreed that boolean values are either true or false.
+### Truthy Values
 
-### Truthy values
+- **All numbers (positive and negative)** are truthy, except for `0`.
+- **All strings** are truthy, except for an empty string (`''`).
+- The boolean value `true`.
 
-- All numbers(positive and negative) are truthy except zero
-- All strings are truthy except an empty string ('')
-- The boolean true
+### Falsy Values
 
-### Falsy values
+- `0`  
+- `0n` (BigInt zero):  
+  ```js
+  console.log(typeof 0n); // "bigint"  
+  let bigNum = 123456789012345678901234567890n;  
+  console.log(bigNum + 10n); // 123456789012345678901234567900n  
+  ```
+- `null`  
+- `undefined`  
+- `NaN` (Not-a-Number):  
+  **What it is:** Represents an invalid or unrepresentable number.  
+  **Purpose:** Indicates that a value is not a valid number.  
+  **Behavior:**  
+  - NaN is of type `"number"` (since it results from invalid numeric operations).  
+  - Any operation involving NaN results in NaN.  
+  - Use `isNaN()` to check for invalid numbers.  
 
-- 0
-- 0n( // "bigint") console.log(typeof 0n);  
-let bigNum = 123456789012345678901234567890n;
-console.log(bigNum + 10n);   
-- null
-- undefined
-- NaN(Stands for Not-a-Number.)
-What it is: Stands for Not-a-Number.
-Purpose: Indicates that a value is not a valid number.
-Behavior:
-NaN is of type "number" (since it results from invalid number operations).
-Any operation with NaN results in NaN.
-Use isNaN() to check for invalid numbers.
-```
-console.log(NaN);              // NaN
-console.log(typeof NaN);       // "number"
+  Example:  
+  ```js
+  
+  console.log(NaN);              // NaN
+  console.log(typeof NaN);       // "number"
+  console.log(0 / 0);            // NaN (invalid math)
+  console.log(Number("abc"));    // NaN (invalid conversion)
+  console.log(isNaN(NaN));       // true
+  console.log(NaN === NaN);      // false (special behavior of NaN)
+  ```
+  more example in Nan.js example go there 
+- The boolean value `false`.  
+- Empty strings (`''`, `""`, ````).
 
-console.log(0 / 0);            // NaN (invalid math)
-console.log(Number("abc"));    // NaN (invalid conversion)
+**Tip:** Remember these truthy and falsy values—they're fundamental for conditions and decision-making in JavaScript.
 
-console.log(isNaN(NaN));       // true
-console.log(NaN === NaN);      // false (special behavior of NaN)
-```
-- the boolean false
-- '', "", ``, empty string
-
-It is good to remember those truthy values and falsy values. In later section, we will use them with conditions to make decisions.
+---
 
 ## Undefined
 
-If we declare a variable and if we do not assign a value, the value will be undefined. In addition to this, if a function is not returning the value, it will be undefined.
+A variable is `undefined` when declared but not assigned a value. A function that doesn't explicitly return a value also returns `undefined`.
 
+Example:  
 ```js
-let firstName
-console.log(firstName) //not defined, because it is not assigned to a value yet
+let firstName;
+console.log(firstName); // undefined, because no value is assigned
 ```
+
+---
 
 ## Null
 
+The value `null` explicitly represents the absence of any value.
+
+Example:  
 ```js
-let empty = null
-console.log(empty) // -> null , means no value
+let empty = null;
+console.log(empty); // null
 ```
+
+---
+
+## Checking Boolean Values
+
+In JavaScript, you can use the `Boolean()` function or double negation (`!!`) to check whether a value is truthy or falsy.
+
+#### Truthy Examples:
+```js
+console.log(Boolean(123));         // true
+console.log(Boolean("hello"));     // true
+console.log(Boolean([]));          // true
+console.log(Boolean({}));          // true
+console.log(Boolean(true));        // true
+```
+
+#### Falsy Examples:
+```js
+console.log(Boolean(0));           // false
+console.log(Boolean(0n));          // false
+console.log(Boolean(null));        // false
+console.log(Boolean(undefined));   // false
+console.log(Boolean(NaN));         // false
+console.log(Boolean(false));       // false
+console.log(Boolean(""));          // false
+```
+
+---
 
 ## Operators
 
-### Assignment operators
+### Assignment Operators
 
-An equal sign in JavaScript is an assignment operator. It uses to assign a variable.
+The equal sign (`=`) is used as an assignment operator to assign values to variables.
 
+Example:  
 ```js
-let firstName = 'Asabeneh'
-let country = 'Finland'
+let firstName = 'Asabeneh';
+let country = 'Finland';
 ```
 
-Assignment Operators
+#### Common Assignment Operators:
 
-![Assignment operators](../images/assignment_operators.png)
+| Operator | Example           | Description                                         |
+|----------|-------------------|-----------------------------------------------------|
+| `=`      | `x = y`           | Assigns the value of `y` to `x`.                   |
+| `+=`     | `x += y`          | Adds `y` to `x` and assigns the result to `x`.     |
+| `-=`     | `x -= y`          | Subtracts `y` from `x` and assigns the result to `x`. |
+| `*=`     | `x *= y`          | Multiplies `x` by `y` and assigns the result to `x`. |
+| `/=`     | `x /= y`          | Divides `x` by `y` and assigns the result to `x`.  |
+| `%=`     | `x %= y`          | Assigns the remainder of `x / y` to `x`.           |
 
+These operators provide a shorthand for updating variable values.
 ### Arithmetic Operators
 
 Arithmetic operators are mathematical operators.
@@ -275,9 +324,55 @@ console.log(count)   // -1
 ```
 
 ### Ternary Operators
+The ternary operator is a shorthand way to write a conditional statement in JavaScript. It takes three operands:
 
-Ternary operator allows to write a condition.
-Another way to write conditionals is using ternary operators. Look at the following examples:
+```javascript
+condition ? expressionIfTrue : expressionIfFalse;
+```
+
+### Example 1: Basic Usage
+
+```javascript
+let age = 18;
+let canVote = age >= 18 ? "Yes, you can vote." : "No, you cannot vote.";
+console.log(canVote); // Output: "Yes, you can vote."
+```
+
+**Explanation**:
+1. **Condition**: `age >= 18`  
+   - Checks if the value of `age` is greater than or equal to 18.
+2. **ExpressionIfTrue**: `"Yes, you can vote."`  
+   - This expression runs if the condition is `true`.
+3. **ExpressionIfFalse**: `"No, you cannot vote."`  
+   - This expression runs if the condition is `false`.
+
+---
+
+### Example 2: Nested Ternary Operators
+
+You can use a ternary operator inside another ternary operator for more complex conditions, but this can reduce readability.
+
+```javascript
+let score = 85;
+let grade = score >= 90 
+  ? "A" 
+  : score >= 80 
+    ? "B" 
+    : score >= 70 
+      ? "C" 
+      : "F";
+console.log(grade); // Output: "B"
+```
+
+**Explanation**:
+- First, check if `score >= 90`:
+  - If `true`, assign "A".
+  - If `false`, check the next condition `score >= 80`.
+    - If `true`, assign "B".
+    - Continue similarly for other conditions.
+
+---
+
 
 ```js
 let isRaining = true

@@ -3,29 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alert, Prompt, and Confirm Example</title>
+  <title>Age Verification</title>
 </head>
 <body>
-  <h1>Alert, Prompt, and Confirm Example</h1>
-  <button onclick="showDialogs()">Click Me</button>
+  <h1>Age Verification Example</h1>
+  <button onclick="verifyAge()">Check Age</button>
 
   <script>
-    function showDialogs() {
-      // Alert Example
-      alert("Welcome to the website!");
+    function verifyAge() {
+      // Alert Example: Greet the user
+      alert("Welcome to our website!");
 
-      // Prompt Example
-      let name = prompt("What is your name?", "Guest");
-      if (name) {
-        // Confirm Example
-        let isSure = confirm(`Is your name really ${name}?`);
-        if (isSure) {
-          alert(`Hello, ${name}! Welcome to our site.`);
+      // Prompt Example: Ask for age
+      let age = prompt("Please enter your age:");
+
+      if (age) {
+        // Convert the age to a number
+        age = parseInt(age);
+
+        // Confirm Example: Check if user is old enough
+        if (age >= 18) {
+          let isSure = confirm("You are " + age + " years old. Are you sure you want to proceed?");
+          if (isSure) {
+            alert("You are allowed to access the content!");
+          } else {
+            alert("Access denied. Maybe next time.");
+          }
         } else {
-          alert("Name not confirmed!");
+          alert("Sorry, you must be 18 or older to access this content.");
         }
       } else {
-        alert("No name provided!");
+        alert("No age provided! Please enter a valid age.");
       }
     }
   </script>
